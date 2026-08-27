@@ -254,9 +254,51 @@ function useInstallPrompt() {
   };
 }
 
+const navItems = [
+  { id: 'inicio', label: 'Painel', icon: Home },
+  { id: 'mapa', label: 'Mapa', icon: MapPin },
+  { id: 'rotas', label: 'Rotas', icon: Route },
+  { id: 'relatos', label: 'Relatos', icon: MessageSquarePlus },
+  { id: 'conformidade', label: 'Conformidade', icon: ShieldCheck }
+];
+
+const futureModules = [
+  { label: 'In+ Mobility', icon: Accessibility },
+  { label: 'In+ Family', icon: UsersRound },
+  { label: 'In+ Sense', icon: Waves },
+  { label: 'In+ Vision', icon: Eye },
+  { label: 'In+ Sign', icon: Ear }
+];
+
+const bottomNavItems = [
+  { id: 'inicio', label: 'Painel', icon: Home },
+  { id: 'mapa', label: 'Mapa', icon: MapPin },
+  { id: 'relatos', label: 'Relatos', icon: MessageSquarePlus },
+  { id: 'conformidade', label: 'Legal', icon: ShieldCheck }
+];
+
 function App() {
   const featuredPlace = places[0];
   const { canInstall, installed, installApp } = useInstallPrompt();
+  const [activeTab, setActiveTab] = useState('inicio');
+  const [devMessage, setDevMessage] = useState('');
+
+  useEffect(() => {
+    if (!devMessage) return;
+    const timer = window.setTimeout(() => setDevMessage(''), 1800);
+    return () => window.clearTimeout(timer);
+  }, [devMessage]);
+
+  const handleTabSelect = (tabId: string) => {
+    if (tabId === 'inicio' || tabId === 'mapa' || tabId === 'rotas' || tabId === 'relatos' || tabId === 'conformidade') {
+      setActiveTab(tabId);
+      setDevMessage('');
+      return;
+    }
+
+    setActiveTab(tabId);
+    setDevMessage('Funcionalidade em desenvolvimento');
+  };
 
   return (
     <main className="app-shell">
@@ -266,28 +308,40 @@ function App() {
           <span>In+</span>
         </a>
 
-        <nav className="nav-list">
-          <a className="active" href="#inicio">
-            <Home size={18} />
-            Painel
-          </a>
-          <a href="#mapa">
-            <MapPin size={18} />
-            Mapa
-          </a>
-          <a href="#rotas">
-            <Route size={18} />
-            Rotas
-          </a>
-          <a href="#relatos">
-            <MessageSquarePlus size={18} />
-            Relatos
-          </a>
-          <a href="#conformidade">
-            <ShieldCheck size={18} />
-            Conformidade
-          </a>
+        <nav className="nav-list" aria-label="Menu principal">
+          {navItems.map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              type="button"
+              className={activeTab === id ? 'nav-item active' : 'nav-item'}
+              onClick={() => handleTabSelect(id)}
+            >
+              <Icon size={18} />
+              <span>{label}</span>
+            </button>
+          ))}
         </nav>
+
+        <div className="coming-soon-panel">
+          <div className="section-label-wrap compact">
+            <p className="eyebrow">Em breve</p>
+            <h2>Módulos</h2>
+          </div>
+          <div className="coming-soon-list">
+            {futureModules.map(({ label, icon: Icon }) => (
+              <button
+                key={label}
+                type="button"
+                className="coming-soon-item"
+                onClick={() => handleTabSelect(label)}
+              >
+                <Icon size={16} />
+                <span>{label}</span>
+                <small>Em desenvolvimento</small>
+              </button>
+            ))}
+          </div>
+        </div>
 
         <div className="trust-box">
           <ShieldCheck size={20} />
@@ -576,23 +630,24 @@ function App() {
       </section>
 
       <nav className="bottom-nav" aria-label="Navegação mobile">
-        <a className="active" href="#inicio">
-          <Home size={18} />
-          <span>Painel</span>
-        </a>
-        <a href="#mapa">
-          <MapPin size={18} />
-          <span>Mapa</span>
-        </a>
-        <a href="#relatos">
-          <MessageSquarePlus size={18} />
-          <span>Relatos</span>
-        </a>
-        <a href="#conformidade">
-          <ShieldCheck size={18} />
-          <span>Legal</span>
-        </a>
+        {bottomNavItems.map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            type="button"
+            className={activeTab === id ? 'bottom-nav-item active' : 'bottom-nav-item'}
+            onClick={() => handleTabSelect(id)}
+          >
+            <Icon size={18} />
+            <span>{label}</span>
+          </button>
+        ))}
       </nav>
+
+      {devMessage ? (
+        <div className="development-toast" role="status" aria-live="polite">
+          {devMessage}
+        </div>
+      ) : null}
     </main>
   );
 }
