@@ -281,23 +281,9 @@ function App() {
   const featuredPlace = places[0];
   const { canInstall, installed, installApp } = useInstallPrompt();
   const [activeTab, setActiveTab] = useState('inicio');
-  const [devMessage, setDevMessage] = useState('');
-
-  useEffect(() => {
-    if (!devMessage) return;
-    const timer = window.setTimeout(() => setDevMessage(''), 1800);
-    return () => window.clearTimeout(timer);
-  }, [devMessage]);
 
   const handleTabSelect = (tabId: string) => {
-    if (tabId === 'inicio' || tabId === 'mapa' || tabId === 'rotas' || tabId === 'relatos' || tabId === 'conformidade') {
-      setActiveTab(tabId);
-      setDevMessage('');
-      return;
-    }
-
     setActiveTab(tabId);
-    setDevMessage('Funcionalidade em desenvolvimento');
   };
 
   return (
@@ -321,27 +307,6 @@ function App() {
             </button>
           ))}
         </nav>
-
-        <div className="coming-soon-panel">
-          <div className="section-label-wrap compact">
-            <p className="eyebrow">Em breve</p>
-            <h2>Módulos</h2>
-          </div>
-          <div className="coming-soon-list">
-            {futureModules.map(({ label, icon: Icon }) => (
-              <button
-                key={label}
-                type="button"
-                className="coming-soon-item"
-                onClick={() => handleTabSelect(label)}
-              >
-                <Icon size={16} />
-                <span>{label}</span>
-                <small>Em desenvolvimento</small>
-              </button>
-            ))}
-          </div>
-        </div>
 
         <div className="trust-box">
           <ShieldCheck size={20} />
@@ -418,24 +383,6 @@ function App() {
             <strong>Atualiza</strong>
             <span>nova versão aplicada automaticamente ao reabrir ou focar o app</span>
           </article>
-        </section>
-
-        <section className="feature-rail" aria-label="Ações rápidas">
-          <div className="section-label-wrap">
-            <p className="eyebrow">Ações rápidas</p>
-            <h2>O que você quer fazer agora?</h2>
-          </div>
-          <div className="feature-grid">
-            {quickActions.map(({ label, description, icon: Icon }) => (
-              <button className="feature-card" key={label} type="button">
-                <span className="feature-icon">
-                  <Icon size={18} />
-                </span>
-                <strong>{label}</strong>
-                <small>{description}</small>
-              </button>
-            ))}
-          </div>
         </section>
 
         <section className="journey-panel" aria-label="Como o app funciona">
@@ -642,12 +589,6 @@ function App() {
           </button>
         ))}
       </nav>
-
-      {devMessage ? (
-        <div className="development-toast" role="status" aria-live="polite">
-          {devMessage}
-        </div>
-      ) : null}
     </main>
   );
 }
