@@ -580,6 +580,7 @@ a {
 }
 
 .place-card {
+  width: 100%;
   display: grid;
   grid-template-columns: 54px minmax(0, 1fr);
   gap: 12px;
@@ -587,6 +588,14 @@ a {
   border: 1px solid var(--line);
   border-radius: 12px;
   background: linear-gradient(180deg, rgba(246, 249, 253, 0.92), rgba(255, 255, 255, 1));
+  text-align: left;
+  color: var(--ink);
+}
+
+.place-card.selected {
+  border-color: rgba(32, 205, 200, 0.4);
+  background: linear-gradient(180deg, rgba(32, 205, 200, 0.08), rgba(255, 255, 255, 1));
+  box-shadow: 0 12px 20px rgba(32, 205, 200, 0.06);
 }
 
 .place-score {

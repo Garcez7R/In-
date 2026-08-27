@@ -13,7 +13,6 @@ import {
   Ear,
   Eye,
   FileCheck,
-  HeartHandshake,
   Home,
   LockKeyhole,
   MapPin,
@@ -25,10 +24,8 @@ import {
   Scale,
   Search,
   ShieldCheck,
-  Sparkles,
   Stethoscope,
   UserRoundCheck,
-  UsersRound,
   Waves,
   Wifi
 } from 'lucide-react';
@@ -243,7 +240,9 @@ function useInstallPrompt() {
 }
 
 function App() {
-  const featuredPlace = places[0];
+  const [selectedNeed, setSelectedNeed] = useState('Ostomia');
+  const [selectedPlaceId, setSelectedPlaceId] = useState(1);
+  const featuredPlace = places.find((place) => place.id === selectedPlaceId) ?? places[0];
   const { canInstall, installed, installApp } = useInstallPrompt();
 
   return (
@@ -363,7 +362,18 @@ function App() {
             {needs.map((need) => {
               const Icon = need.icon;
               return (
-                <button className={need.active ? 'need-chip active' : 'need-chip'} key={need.label}>
+                <button
+                  key={need.label}
+                  type="button"
+                  className={selectedNeed === need.label ? 'need-chip active' : 'need-chip'}
+                  onClick={() => {
+                    setSelectedNeed(need.label);
+                    if (need.label === 'Ostomia') setSelectedPlaceId(1);
+                    if (need.label === 'Mobilidade') setSelectedPlaceId(2);
+                    if (need.label === 'Sensorial' || need.label === 'Visual' || need.label === 'Auditiva') setSelectedPlaceId(3);
+                  }}
+                  aria-pressed={selectedNeed === need.label}
+                >
                   <Icon size={18} />
                   <span>{need.label}</span>
                   <small>{need.count}</small>
@@ -390,10 +400,12 @@ function App() {
               <div className="map-route" />
               {places.map((place) => (
                 <button
-                  className={place.status === 'Verificado' ? 'map-pin verified' : 'map-pin review'}
+                  className={place.id === selectedPlaceId ? 'map-pin verified' : 'map-pin review'}
                   style={{ left: `${place.position.x}%`, top: `${place.position.y}%` }}
                   key={place.id}
                   aria-label={place.name}
+                  type="button"
+                  onClick={() => setSelectedPlaceId(place.id)}
                 >
                   <MapPin size={18} />
                 </button>
@@ -416,7 +428,12 @@ function App() {
 
             <div className="place-list">
               {places.map((place) => (
-                <article className="place-card" key={place.id}>
+                <button
+                  type="button"
+                  key={place.id}
+                  className={place.id === selectedPlaceId ? 'place-card selected' : 'place-card'}
+                  onClick={() => setSelectedPlaceId(place.id)}
+                >
                   <div className="place-score">{place.score}</div>
                   <div className="place-body">
                     <div className="place-title">
@@ -434,7 +451,7 @@ function App() {
                       ))}
                     </div>
                   </div>
-                </article>
+                </button>
               ))}
             </div>
           </section>
@@ -487,26 +504,10 @@ function App() {
             </div>
           </section>
 
-          <section className="stoma-panel">
-            <div>
-              <p className="eyebrow">Módulo especializado</p>
-              <h2>In+ Stoma</h2>
-              <p>
-                Informações sobre privacidade, bancada, descarte, espaço de troca e confiança do
-                banheiro antes da pessoa chegar ao local.
-              </p>
-            </div>
-            <div className="module-icons" aria-hidden="true">
-              <HeartHandshake />
-              <UsersRound />
-              <Sparkles />
-            </div>
-          </section>
-
           <section className="compliance-panel" id="conformidade">
             <div className="panel-heading">
               <div>
-                <p className="eyebrow">Conformidade desde o MVP</p>
+                <p className="eyebrow">Conformidade</p>
                 <h2>Privacidade, segurança e responsabilidade</h2>
               </div>
               <ShieldCheck size={22} />
