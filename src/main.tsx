@@ -126,7 +126,7 @@ function App() {
     <main className="app-shell">
       <aside className="sidebar" aria-label="Navegacao principal">
         <a className="brand" href="#inicio" aria-label="In+ inicio">
-          <img src="/inplus-logo.png" alt="" />
+          <img src="/inplus-logo-v2.png" alt="" />
           <span>In+</span>
         </a>
 
