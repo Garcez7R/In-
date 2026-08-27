@@ -1,4 +1,4 @@
-# In+ — Plataforma de Acesso Inclusivo
+# InPlus — Plataforma de Acesso Inclusivo
 
 > Uma plataforma tecnológica criada para reduzir barreiras de acessibilidade e ajudar pessoas a circular por espaços físicos com mais autonomia, confiança e previsibilidade.
 
@@ -14,19 +14,19 @@ Idiomas: **Português (principal)** · [English](#english) · [Español](#españ
 
 ## Sobre o Projeto
 
-**In+** é uma plataforma colaborativa de acessibilidade que ajuda pessoas a descobrir lugares de acordo com suas necessidades reais de acesso.
+**InPlus** é uma plataforma colaborativa de acessibilidade que ajuda pessoas a descobrir lugares de acordo com suas necessidades reais de acesso.
 
 Mapas tradicionais respondem:
 
 > "Onde fica este lugar?"
 
-In+ busca responder:
+InPlus busca responder:
 
 > "Eu consigo acessar este lugar com segurança, conforto e previsibilidade?"
 
 A plataforma nasce de um desafio cotidiano: muitas pessoas precisam de informações específicas antes de sair de casa, mas esses dados costumam ser incompletos, indisponíveis ou pouco confiáveis.
 
-In+ transforma experiências da comunidade em dados estruturados de acessibilidade.
+InPlus transforma experiências da comunidade em dados estruturados de acessibilidade.
 
 ---
 
@@ -46,7 +46,7 @@ A plataforma se orienta por:
 
 ## MVP Atual
 
-A primeira versão do In+ é um Progressive Web App focado em mapear lugares acessíveis, validar condições de acessibilidade e coletar relatos da comunidade.
+A primeira versão do InPlus é um Progressive Web App focado em mapear lugares acessíveis, validar condições de acessibilidade e coletar relatos da comunidade.
 
 Este MVP inclui:
 
@@ -91,7 +91,7 @@ Cada lugar pode evoluir de um simples ponto no mapa para um perfil estruturado d
 
 ---
 
-## Módulo In+ Stoma
+## Módulo InPlus Stoma
 
 ### Acessibilidade para pessoas que vivem com ostomia
 
@@ -99,7 +99,7 @@ O primeiro módulo especializado da plataforma.
 
 Muitas soluções de acessibilidade olham apenas para mobilidade. Porém, existem necessidades menos visíveis e igualmente importantes.
 
-O módulo In+ Stoma foca em informações como:
+O módulo InPlus Stoma foca em informações como:
 
 - disponibilidade de banheiros adequados;
 - privacidade;
@@ -137,7 +137,7 @@ Usuários podem contribuir com:
 
 ### Planejados
 
-#### In+ Mobility
+#### InPlus Mobility
 
 Acessibilidade física:
 
@@ -146,7 +146,7 @@ Acessibilidade física:
 - estacionamento acessível;
 - informações estruturais.
 
-#### In+ Family
+#### InPlus Family
 
 Acessibilidade para famílias:
 
@@ -154,7 +154,7 @@ Acessibilidade para famílias:
 - salas de amamentação;
 - infraestrutura familiar.
 
-#### In+ Sense
+#### InPlus Sense
 
 Acessibilidade sensorial:
 
@@ -162,7 +162,7 @@ Acessibilidade sensorial:
 - baixa estimulação;
 - locais sensorialmente amigáveis.
 
-#### In+ Vision
+#### InPlus Vision
 
 Acessibilidade visual:
 
@@ -170,7 +170,7 @@ Acessibilidade visual:
 - informação em Braille;
 - recursos de orientação.
 
-#### In+ Sign
+#### InPlus Sign
 
 Acessibilidade auditiva:
 
@@ -257,16 +257,16 @@ Validação futura gerada pela comunidade:
 
 ## Identidade Visual
 
-A identidade In+ combina tecnologia, cuidado e inclusão.
+A identidade InPlus combina tecnologia, cuidado e inclusão.
 
 ### Paleta de Cores
 
 | Token | HEX | Papel |
 |---|---:|---|
-| In+ Blue | `#033079` | Confiança, navegação, textos fortes e estrutura principal. |
-| In+ Aqua | `#20CDC8` | Ações positivas, sinais de acessibilidade e cuidado. |
-| In+ Violet | `#6C50EA` | Inovação, estados ativos e destaques selecionados. |
-| In+ White | `#FFFFFF` | Clareza, respiro visual e contraste acessível. |
+| InPlus Blue | `#033079` | Confiança, navegação, textos fortes e estrutura principal. |
+| InPlus Aqua | `#20CDC8` | Ações positivas, sinais de acessibilidade e cuidado. |
+| InPlus Violet | `#6C50EA` | Inovação, estados ativos e destaques selecionados. |
+| InPlus White | `#FFFFFF` | Clareza, respiro visual e contraste acessível. |
 
 A interface usa branco como fundo principal, azul profundo como estrutura de confiança e verde-água como cor principal de ação. O violeta aparece com moderação como destaque secundário.
 
@@ -343,7 +343,7 @@ O Wrangler atual exige Node.js 22 ou superior.
 
 ---
 
-## Por que In+?
+## Por que InPlus?
 
 O símbolo "+" representa expansão:
 
@@ -353,7 +353,7 @@ O símbolo "+" representa expansão:
 - mais dignidade;
 - mais possibilidades.
 
-In+ não é apenas sobre encontrar lugares.
+InPlus não é apenas sobre encontrar lugares.
 
 É sobre ajudar pessoas a sentir que pertencem a esses lugares.
 
@@ -369,25 +369,25 @@ Construindo uma plataforma de acessibilidade onde software encontra necessidades
 
 # English
 
-## In+ — Inclusive Access Platform
+## InPlus — Inclusive Access Platform
 
 > A technology platform designed to reduce accessibility barriers and help people navigate physical spaces with more autonomy, confidence and predictability.
 
 ## About the Project
 
-**In+** is a collaborative accessibility platform that helps people discover places according to their specific accessibility needs.
+**InPlus** is a collaborative accessibility platform that helps people discover places according to their specific accessibility needs.
 
 Traditional maps can answer:
 
 > "Where is this place?"
 
-In+ aims to answer:
+InPlus aims to answer:
 
 > "Can I safely and comfortably access this place?"
 
 The platform was created from a real-world accessibility challenge: many people need additional information before leaving home, but this information is often unavailable, incomplete or unreliable.
 
-In+ transforms community experiences into structured accessibility data.
+InPlus transforms community experiences into structured accessibility data.
 
 ## Product Vision
 
@@ -397,7 +397,7 @@ The platform focuses on accessibility transparency, community-driven information
 
 ## Current MVP
 
-The first version of In+ is a Progressive Web App focused on mapping accessible places, validating accessibility conditions and collecting community reports.
+The first version of InPlus is a Progressive Web App focused on mapping accessible places, validating accessibility conditions and collecting community reports.
 
 This MVP includes a responsive React interface, installable PWA structure, offline-ready service worker, accessibility discovery, community reporting, Cloudflare Pages deployment setup, Cloudflare D1 schema and serverless API endpoints.
 
@@ -415,7 +415,7 @@ People can register accessibility barriers and contribute practical information 
 
 Each place can evolve from a simple location record into a structured accessibility profile, combining community input, validation status and practical details.
 
-## In+ Stoma Module
+## InPlus Stoma Module
 
 The first specialized module of the platform focuses on accessibility for people living with ostomy.
 
@@ -457,11 +457,11 @@ The project follows privacy-by-design principles: minimal data collection, expli
 
 Future platform layers include authentication, advanced filters, favorites, contributor reputation, real map experience, media uploads, AI capabilities, institutional partnerships and additional accessibility modules.
 
-## Why In+?
+## Why InPlus?
 
 The "+" represents more access, more autonomy, more information, more dignity and more possibilities.
 
-In+ is not only about finding places. It is about helping people feel confident that they belong in those places.
+InPlus is not only about finding places. It is about helping people feel confident that they belong in those places.
 
 ## Project Status
 
@@ -473,25 +473,25 @@ Building an accessibility-focused technology platform where software meets human
 
 # Español
 
-## In+ — Plataforma de Acceso Inclusivo
+## InPlus — Plataforma de Acceso Inclusivo
 
 > Una plataforma tecnológica creada para reducir barreras de accesibilidad y ayudar a las personas a moverse por espacios físicos con más autonomía, confianza y previsibilidad.
 
 ## Sobre el Proyecto
 
-**In+** es una plataforma colaborativa de accesibilidad que ayuda a las personas a descubrir lugares según sus necesidades reales de acceso.
+**InPlus** es una plataforma colaborativa de accesibilidad que ayuda a las personas a descubrir lugares según sus necesidades reales de acceso.
 
 Los mapas tradicionales pueden responder:
 
 > "¿Dónde está este lugar?"
 
-In+ busca responder:
+InPlus busca responder:
 
 > "¿Puedo acceder a este lugar con seguridad, comodidad y previsibilidad?"
 
 La plataforma nace de un desafío cotidiano: muchas personas necesitan información específica antes de salir de casa, pero esos datos suelen ser incompletos, inexistentes o poco confiables.
 
-In+ transforma experiencias de la comunidad en datos estructurados de accesibilidad.
+InPlus transforma experiencias de la comunidad en datos estructurados de accesibilidad.
 
 ## Visión de Producto
 
@@ -501,7 +501,7 @@ La plataforma se enfoca en transparencia de accesibilidad, información construi
 
 ## MVP Actual
 
-La primera versión de In+ es una Progressive Web App enfocada en mapear lugares accesibles, validar condiciones de accesibilidad y recopilar reportes de la comunidad.
+La primera versión de InPlus es una Progressive Web App enfocada en mapear lugares accesibles, validar condiciones de accesibilidad y recopilar reportes de la comunidad.
 
 Este MVP incluye interfaz responsiva en React, estructura instalable de PWA, service worker con soporte offline, descubrimiento de lugares accesibles, flujo de reporte de barreras, configuración para Cloudflare Pages, schema con Cloudflare D1 y endpoints serverless.
 
@@ -519,7 +519,7 @@ Las personas pueden registrar barreras de accesibilidad y contribuir informació
 
 Cada lugar puede evolucionar de un simple punto en el mapa a un perfil estructurado de accesibilidad, combinando aportes de la comunidad, estado de validación y detalles prácticos.
 
-## Módulo In+ Stoma
+## Módulo InPlus Stoma
 
 El primer módulo especializado de la plataforma se enfoca en accesibilidad para personas que viven con ostomía.
 
@@ -561,11 +561,11 @@ El proyecto sigue principios de privacidad desde el diseño: recolección mínim
 
 Las próximas capas de la plataforma incluyen autenticación, filtros avanzados, favoritos, reputación de contribuidores, experiencia real de mapa, carga de medios, capacidades de IA, alianzas institucionales y módulos adicionales de accesibilidad.
 
-## ¿Por qué In+?
+## ¿Por qué InPlus?
 
 El "+" representa más acceso, más autonomía, más información, más dignidad y más posibilidades.
 
-In+ no se trata solo de encontrar lugares. Se trata de ayudar a las personas a sentir que pertenecen a esos lugares.
+InPlus no se trata solo de encontrar lugares. Se trata de ayudar a las personas a sentir que pertenecen a esos lugares.
 
 ## Estado del Proyecto
 

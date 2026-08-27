@@ -314,9 +314,9 @@ function App() {
   return (
     <main className="app-shell">
       <aside className="sidebar" aria-label="Navegacao principal">
-        <a className="brand" href="#inicio" aria-label="In+ inicio">
+        <a className="brand" href="#inicio" aria-label="InPlus inicio">
           <img src="/inplus-icon-192.png" alt="" />
-          <span>In+</span>
+          <span>InPlus</span>
         </a>
 
         <nav className="nav-list" aria-label="Menu principal">
@@ -381,7 +381,7 @@ function App() {
                 <p className="eyebrow">Acesso antes do deslocamento</p>
                 <h1>Saia sabendo o que vai encontrar.</h1>
                 <p>
-                  O In+ organiza informações verificáveis sobre banheiros, rotas, atendimento e barreiras para reduzir incerteza antes da chegada.
+                  O InPlus organiza informações verificáveis sobre banheiros, rotas, atendimento e barreiras para reduzir incerteza antes da chegada.
                 </p>
                 <div className="hero-actions">
                   <button className="primary-action" type="button" onClick={() => setView('detail')}>
