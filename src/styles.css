@@ -28,6 +28,12 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 button,
@@ -43,6 +49,8 @@ a {
 }
 
 .app-shell {
+  width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -52,6 +60,7 @@ a {
 }
 
 .sidebar {
+  min-width: 0;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -84,6 +93,11 @@ a {
 .nav-list {
   display: grid;
   gap: 8px;
+  scrollbar-width: none;
+}
+
+.nav-list::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-list a {
@@ -119,6 +133,7 @@ a {
 
 .workspace {
   min-width: 0;
+  width: 100%;
   padding: 22px clamp(18px, 4vw, 48px) 48px;
 }
 
@@ -164,6 +179,9 @@ a {
 }
 
 .hero-panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 360px;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
@@ -195,12 +213,23 @@ a {
   letter-spacing: 0;
 }
 
+.hero-copy,
+.hero-copy p,
+.hero-actions,
+.panel,
+.place-card,
+.task-row {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .hero-copy p:not(.eyebrow) {
   max-width: 680px;
   margin: 20px 0 0;
   color: rgba(255, 255, 255, 0.88);
   font-size: 1.12rem;
   line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
 .hero-actions {
@@ -213,6 +242,7 @@ a {
 .primary-action,
 .secondary-action,
 .text-button {
+  max-width: 100%;
   min-height: 44px;
   border-radius: 8px;
   display: inline-flex;
@@ -521,6 +551,11 @@ a {
   .hero-panel {
     padding: 24px;
     gap: 24px;
+    overflow: hidden;
+  }
+
+  .hero-copy p:not(.eyebrow) {
+    font-size: 1rem;
   }
 
   .hero-actions a,
