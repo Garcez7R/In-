@@ -1,10 +1,10 @@
 name = "inplus"
 compatibility_date = "2026-08-27"
 pages_build_output_dir = "dist"
-migrations_dir = "d1/migrations"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "inplus-db"
 database_id = "1096f6f1-8cf2-425a-ba4a-41d0063a2d7d"
 preview_database_id = "1096f6f1-8cf2-425a-ba4a-41d0063a2d7d"
+migrations_dir = "d1/migrations"
