@@ -1,7 +1,7 @@
 {
   "name": "In+",
   "short_name": "In+",
-  "description": "Rede de acessibilidade, autonomia e conexao entre pessoas e lugares.",
+  "description": "Rede de acessibilidade, autonomia e conexão entre pessoas e lugares.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -10,16 +10,22 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/inplus-logo-v2.png",
+      "src": "/inplus-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/inplus-logo-v2.png",
+      "src": "/inplus-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/inplus-icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

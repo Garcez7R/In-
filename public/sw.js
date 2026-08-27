@@ -1,5 +1,12 @@
-const CACHE_NAME = 'inplus-v4';
-const APP_ASSETS = ['/', '/index.html', '/manifest.webmanifest', '/inplus-logo-v2.png'];
+const CACHE_NAME = 'inplus-v5';
+const APP_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.webmanifest',
+  '/inplus-icon-192.png',
+  '/inplus-icon-512.png',
+  '/inplus-icon-maskable.png'
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_ASSETS)));

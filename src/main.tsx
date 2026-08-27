@@ -43,7 +43,7 @@ type Place = {
   area: string;
   distance: string;
   score: number;
-  status: 'Verificado' | 'Em validacao';
+  status: 'Verificado' | 'Em validação';
   lastCheck: string;
   tags: string[];
   signals: string[];
@@ -84,7 +84,7 @@ const places: Place[] = [
   {
     id: 2,
     name: 'Clinica Vida Plena',
-    category: 'Saude',
+    category: 'Saúde',
     area: 'Centro',
     distance: '2,4 km',
     score: 91,
@@ -102,7 +102,7 @@ const places: Place[] = [
     area: 'Centro',
     distance: '3,1 km',
     score: 86,
-    status: 'Em validacao',
+    status: 'Em validação',
     lastCheck: '3 relatos recentes',
     tags: ['rampa', 'piso tatil', 'elevador'],
     signals: ['Elevador operacional no acesso leste', 'Rampa com corrimao duplo'],
