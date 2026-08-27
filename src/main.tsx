@@ -138,18 +138,6 @@ const complianceItems = [
   }
 ];
 
-const quickActions = [
-  { label: 'Buscar perto', description: 'Ver os locais mais acessíveis agora', icon: Navigation },
-  { label: 'Comunitário', description: 'Conferir relatos recentes na região', icon: MessageSquarePlus },
-  { label: 'Salvar rota', description: 'Guardar caminhos favoritos para voltar depois', icon: Route }
-];
-
-const journeySteps = [
-  { title: 'Explorar', text: 'Descubra lugares com base em suas necessidades reais de acesso.', icon: Search },
-  { title: 'Validar', text: 'Compare sinais, relatórios e critérios de confiança antes de sair.', icon: ClipboardCheck },
-  { title: 'Acompanhar', text: 'Acesse rotas, restrições e histórico de melhorias locais.', icon: CircleGauge }
-];
-
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -254,37 +242,9 @@ function useInstallPrompt() {
   };
 }
 
-const navItems = [
-  { id: 'inicio', label: 'Painel', icon: Home },
-  { id: 'mapa', label: 'Mapa', icon: MapPin },
-  { id: 'rotas', label: 'Rotas', icon: Route },
-  { id: 'relatos', label: 'Relatos', icon: MessageSquarePlus },
-  { id: 'conformidade', label: 'Conformidade', icon: ShieldCheck }
-];
-
-const futureModules = [
-  { label: 'In+ Mobility', icon: Accessibility },
-  { label: 'In+ Family', icon: UsersRound },
-  { label: 'In+ Sense', icon: Waves },
-  { label: 'In+ Vision', icon: Eye },
-  { label: 'In+ Sign', icon: Ear }
-];
-
-const bottomNavItems = [
-  { id: 'inicio', label: 'Painel', icon: Home },
-  { id: 'mapa', label: 'Mapa', icon: MapPin },
-  { id: 'relatos', label: 'Relatos', icon: MessageSquarePlus },
-  { id: 'conformidade', label: 'Legal', icon: ShieldCheck }
-];
-
 function App() {
   const featuredPlace = places[0];
   const { canInstall, installed, installApp } = useInstallPrompt();
-  const [activeTab, setActiveTab] = useState('inicio');
-
-  const handleTabSelect = (tabId: string) => {
-    setActiveTab(tabId);
-  };
 
   return (
     <main className="app-shell">
@@ -294,18 +254,27 @@ function App() {
           <span>In+</span>
         </a>
 
-        <nav className="nav-list" aria-label="Menu principal">
-          {navItems.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              type="button"
-              className={activeTab === id ? 'nav-item active' : 'nav-item'}
-              onClick={() => handleTabSelect(id)}
-            >
-              <Icon size={18} />
-              <span>{label}</span>
-            </button>
-          ))}
+        <nav className="nav-list">
+          <a className="active" href="#inicio">
+            <Home size={18} />
+            Painel
+          </a>
+          <a href="#mapa">
+            <MapPin size={18} />
+            Mapa
+          </a>
+          <a href="#rotas">
+            <Route size={18} />
+            Rotas
+          </a>
+          <a href="#relatos">
+            <MessageSquarePlus size={18} />
+            Relatos
+          </a>
+          <a href="#conformidade">
+            <ShieldCheck size={18} />
+            Conformidade
+          </a>
         </nav>
 
         <div className="trust-box">
@@ -383,24 +352,6 @@ function App() {
             <strong>Atualiza</strong>
             <span>nova versão aplicada automaticamente ao reabrir ou focar o app</span>
           </article>
-        </section>
-
-        <section className="journey-panel" aria-label="Como o app funciona">
-          <div className="section-label-wrap">
-            <p className="eyebrow">Como funciona</p>
-            <h2>Uma jornada simples e confiável</h2>
-          </div>
-          <div className="journey-grid">
-            {journeySteps.map(({ title, text, icon: Icon }) => (
-              <article className="journey-step" key={title}>
-                <span className="journey-icon">
-                  <Icon size={22} />
-                </span>
-                <strong>{title}</strong>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
         </section>
 
         <section className="filters-panel" aria-label="Filtros de acessibilidade">
@@ -577,17 +528,22 @@ function App() {
       </section>
 
       <nav className="bottom-nav" aria-label="Navegação mobile">
-        {bottomNavItems.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            type="button"
-            className={activeTab === id ? 'bottom-nav-item active' : 'bottom-nav-item'}
-            onClick={() => handleTabSelect(id)}
-          >
-            <Icon size={18} />
-            <span>{label}</span>
-          </button>
-        ))}
+        <a className="active" href="#inicio">
+          <Home size={18} />
+          <span>Painel</span>
+        </a>
+        <a href="#mapa">
+          <MapPin size={18} />
+          <span>Mapa</span>
+        </a>
+        <a href="#relatos">
+          <MessageSquarePlus size={18} />
+          <span>Relatos</span>
+        </a>
+        <a href="#conformidade">
+          <ShieldCheck size={18} />
+          <span>Legal</span>
+        </a>
       </nav>
     </main>
   );
