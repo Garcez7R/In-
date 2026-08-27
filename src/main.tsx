@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   Accessibility,
@@ -9,16 +9,20 @@ import {
   ChevronRight,
   CircleGauge,
   ClipboardCheck,
+  Download,
   Ear,
   Eye,
+  FileCheck,
   HeartHandshake,
   Home,
+  LockKeyhole,
   MapPin,
   Menu,
   MessageSquarePlus,
   Navigation,
   Plus,
   Route,
+  Scale,
   Search,
   ShieldCheck,
   Sparkles,
@@ -29,6 +33,11 @@ import {
   Wifi
 } from 'lucide-react';
 import './styles.css';
+
+type BeforeInstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+};
 
 type Place = {
   id: number;
@@ -111,16 +120,131 @@ const reports = [
   { place: 'Terminal Oeste', type: 'Elevador em manutencao', priority: 'Alta', time: '1 h' }
 ];
 
+const complianceItems = [
+  {
+    title: 'LGPD',
+    text: 'Coleta mínima, finalidade explícita, consentimento para dados sensíveis e transparência sobre uso das contribuições.',
+    icon: LockKeyhole
+  },
+  {
+    title: 'Marco Civil',
+    text: 'Registro responsável, segurança no tratamento, rastreabilidade operacional e respeito à privacidade do usuário.',
+    icon: Scale
+  },
+  {
+    title: 'Governança',
+    text: 'Critérios de validação, revisão comunitária, base legal documentada e fluxo para remoção ou correção de dados.',
+    icon: FileCheck
+  }
+];
+
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => undefined);
+      let refreshing = false;
+      const reloadFlag = 'inplus.update.reload';
+      sessionStorage.removeItem(reloadFlag);
+
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing || sessionStorage.getItem(reloadFlag)) return;
+        refreshing = true;
+        sessionStorage.setItem(reloadFlag, '1');
+        window.location.reload();
+      });
+
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (
+          event.data?.type === 'INPLUS_APP_UPDATED' &&
+          navigator.serviceWorker.controller &&
+          !sessionStorage.getItem(reloadFlag)
+        ) {
+          sessionStorage.setItem(reloadFlag, '1');
+          window.location.reload();
+        }
+      });
+
+      navigator.serviceWorker
+        .register('/sw.js', { updateViaCache: 'none' })
+        .then((registration) => {
+          const activateUpdate = () => {
+            const waitingWorker = registration.waiting;
+            if (waitingWorker && navigator.serviceWorker.controller) {
+              waitingWorker.postMessage({ type: 'INPLUS_SKIP_WAITING' });
+            }
+          };
+
+          registration.addEventListener('updatefound', () => {
+            const installingWorker = registration.installing;
+            if (!installingWorker) return;
+
+            installingWorker.addEventListener('statechange', () => {
+              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                installingWorker.postMessage({ type: 'INPLUS_SKIP_WAITING' });
+              }
+            });
+          });
+
+          activateUpdate();
+          window.addEventListener('focus', () => registration.update());
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+              registration.update();
+            }
+          });
+          window.setInterval(() => registration.update(), 15 * 60 * 1000);
+        })
+        .catch(() => undefined);
     });
   }
 }
 
+function useInstallPrompt() {
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [installed, setInstalled] = useState(() => window.matchMedia('(display-mode: standalone)').matches);
+
+  useEffect(() => {
+    const onBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      setInstallPrompt(event as BeforeInstallPromptEvent);
+    };
+
+    const onInstalled = () => {
+      setInstalled(true);
+      setInstallPrompt(null);
+    };
+
+    window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt);
+    window.addEventListener('appinstalled', onInstalled);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', onInstalled);
+    };
+  }, []);
+
+  const installApp = async () => {
+    if (!installPrompt) return;
+
+    await installPrompt.prompt();
+    const choice = await installPrompt.userChoice;
+
+    if (choice.outcome === 'accepted') {
+      setInstalled(true);
+    }
+
+    setInstallPrompt(null);
+  };
+
+  return {
+    canInstall: Boolean(installPrompt),
+    installed,
+    installApp
+  };
+}
+
 function App() {
   const featuredPlace = places[0];
+  const { canInstall, installed, installApp } = useInstallPrompt();
 
   return (
     <main className="app-shell">
@@ -147,6 +271,10 @@ function App() {
             <MessageSquarePlus size={18} />
             Relatos
           </a>
+          <a href="#conformidade">
+            <ShieldCheck size={18} />
+            Conformidade
+          </a>
         </nav>
 
         <div className="trust-box">
@@ -165,9 +293,9 @@ function App() {
             <Search size={18} />
             <input aria-label="Buscar lugares ou recursos" placeholder="Buscar por lugar, recurso ou necessidade" />
           </div>
-          <button className="primary-button">
-            <Plus size={18} />
-            Novo relato
+          <button className="primary-button" onClick={installApp} disabled={!canInstall && installed}>
+            {installed ? <Check size={18} /> : canInstall ? <Download size={18} /> : <Plus size={18} />}
+            {installed ? 'App instalado' : canInstall ? 'Instalar app' : 'Novo relato'}
           </button>
           <button className="icon-button" aria-label="Notificacoes">
             <Bell size={20} />
@@ -221,8 +349,8 @@ function App() {
           </article>
           <article>
             <Wifi size={20} />
-            <strong>Offline</strong>
-            <span>dados recentes disponíveis no PWA</span>
+            <strong>Atualiza</strong>
+            <span>nova versão aplicada automaticamente ao reabrir ou focar o app</span>
           </article>
         </section>
 
@@ -374,8 +502,49 @@ function App() {
               <Sparkles />
             </div>
           </section>
+
+          <section className="compliance-panel" id="conformidade">
+            <div className="panel-heading">
+              <div>
+                <p className="eyebrow">Conformidade desde o MVP</p>
+                <h2>Privacidade, segurança e responsabilidade</h2>
+              </div>
+              <ShieldCheck size={22} />
+            </div>
+            <div className="compliance-grid">
+              {complianceItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title}>
+                    <Icon size={20} />
+                    <strong>{item.title}</strong>
+                    <p>{item.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
         </div>
       </section>
+
+      <nav className="bottom-nav" aria-label="Navegação mobile">
+        <a className="active" href="#inicio">
+          <Home size={18} />
+          <span>Painel</span>
+        </a>
+        <a href="#mapa">
+          <MapPin size={18} />
+          <span>Mapa</span>
+        </a>
+        <a href="#relatos">
+          <MessageSquarePlus size={18} />
+          <span>Relatos</span>
+        </a>
+        <a href="#conformidade">
+          <ShieldCheck size={18} />
+          <span>Legal</span>
+        </a>
+      </nav>
     </main>
   );
 }
