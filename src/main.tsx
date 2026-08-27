@@ -138,6 +138,18 @@ const complianceItems = [
   }
 ];
 
+const quickActions = [
+  { label: 'Buscar perto', description: 'Ver os locais mais acessíveis agora', icon: Navigation },
+  { label: 'Comunitário', description: 'Conferir relatos recentes na região', icon: MessageSquarePlus },
+  { label: 'Salvar rota', description: 'Guardar caminhos favoritos para voltar depois', icon: Route }
+];
+
+const journeySteps = [
+  { title: 'Explorar', text: 'Descubra lugares com base em suas necessidades reais de acesso.', icon: Search },
+  { title: 'Validar', text: 'Compare sinais, relatórios e critérios de confiança antes de sair.', icon: ClipboardCheck },
+  { title: 'Acompanhar', text: 'Acesse rotas, restrições e histórico de melhorias locais.', icon: CircleGauge }
+];
+
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -352,6 +364,42 @@ function App() {
             <strong>Atualiza</strong>
             <span>nova versão aplicada automaticamente ao reabrir ou focar o app</span>
           </article>
+        </section>
+
+        <section className="feature-rail" aria-label="Ações rápidas">
+          <div className="section-label-wrap">
+            <p className="eyebrow">Ações rápidas</p>
+            <h2>O que você quer fazer agora?</h2>
+          </div>
+          <div className="feature-grid">
+            {quickActions.map(({ label, description, icon: Icon }) => (
+              <button className="feature-card" key={label} type="button">
+                <span className="feature-icon">
+                  <Icon size={18} />
+                </span>
+                <strong>{label}</strong>
+                <small>{description}</small>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="journey-panel" aria-label="Como o app funciona">
+          <div className="section-label-wrap">
+            <p className="eyebrow">Como funciona</p>
+            <h2>Uma jornada simples e confiável</h2>
+          </div>
+          <div className="journey-grid">
+            {journeySteps.map(({ title, text, icon: Icon }) => (
+              <article className="journey-step" key={title}>
+                <span className="journey-icon">
+                  <Icon size={22} />
+                </span>
+                <strong>{title}</strong>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="filters-panel" aria-label="Filtros de acessibilidade">
